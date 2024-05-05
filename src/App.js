@@ -5,6 +5,9 @@ import { Typography } from '@mui/material';
 import Tutorial from './components/Tutorial.js';
 import Bar from './components/Bar.js';
 import AnnotationList from './components/AnnotationList';
+import Twodmap from './components/Twodmap.js';
+import { FOCUSABLE_SELECTOR } from '@testing-library/user-event/dist/utils/index.js';
+
 
 function App() {
   const { unityProvider, sendMessage } = useUnityContext({
@@ -16,12 +19,13 @@ function App() {
 
   const handleShowLocation = (num) => {
     console.log(num);
-    sendMessage('0_annotation_camera', 'SetLocation', num);
+    sendMessage('SceneController', 'Teleport', num);
   };
 
   const [tutorialIsOpen, setTutorialIsOpen] = useState(true);
   const [listOpen, setListOpen] = useState(false);
   const unityRef = useRef(null);
+  const [mapIsOpen, setMapIsOpen] = useState(false);
 
   const openTutorial = () => {
     setTutorialIsOpen(true);
@@ -35,6 +39,14 @@ function App() {
     setListOpen(!listOpen);
   };
 
+  const openMap = () => {
+    setMapIsOpen(true);
+  }
+
+  const closeMap = () => {
+    setMapIsOpen(false);
+  }
+
   document.addEventListener('pointerlockerror', (event) => {
     console.log('error locking pointer');
   });
@@ -45,8 +57,10 @@ function App() {
         openHelp={openTutorial}
         menuClick={menuClick}
         menuOpened={listOpen}
+        openMap={openMap}
       />
       <Tutorial open={tutorialIsOpen} onClose={closeTutorial} />
+      <Twodmap open={mapIsOpen} onClose={closeMap} handleShowLocation={handleShowLocation}/>
       <AnnotationList open={listOpen} handleShowLocation={handleShowLocation} />
       <Typography
         variant="h6"

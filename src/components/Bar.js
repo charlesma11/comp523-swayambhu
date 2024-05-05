@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import HelpIcon from '@mui/icons-material/Help';
+import MapIcon from '@mui/icons-material/Map';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { styled } from '@mui/material/styles';
 
@@ -26,7 +27,7 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-export default function ButtonAppBar({ openHelp, menuClick, menuOpened }) {
+export default function ButtonAppBar({ openHelp, menuClick, menuOpened, openMap }) {
   return (
     <AppBar position="fixed" style={{ background: 'black' }} open={menuOpened}>
       <Toolbar>
@@ -41,6 +42,15 @@ export default function ButtonAppBar({ openHelp, menuClick, menuOpened }) {
           sx={{ mr: 2 }}
           onClick={openHelp} >
           <HelpIcon />
+        </IconButton>
+        <IconButton
+          size="large"
+          edge="end"
+          color="inherit"
+          aria-label="help"
+          sx={{ mr: 2 }}
+          onClick={openMap} >
+          <MapIcon></MapIcon>
         </IconButton>
         <IconButton
           size="large"

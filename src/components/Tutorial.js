@@ -16,7 +16,7 @@ export default function Tutorial({ open, onClose }) {
     >
       <DialogTitle id="alert-dialog-title">{'Tutorial'}</DialogTitle>
       <DialogContent id="alert-dialog-description">
-        <DialogContentText>Use WASD to move around.</DialogContentText>
+        <DialogContentText>Use WASD to move around, and Shift to toggle Flying.</DialogContentText>
         <DialogContentText>
           Double click ESC to freely move cursor.
         </DialogContentText>
